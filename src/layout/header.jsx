@@ -6,7 +6,7 @@ import { RiSearch2Line } from "react-icons/ri";
 import Color from "../styles/js/style";
 import { NavLink } from 'react-router-dom';
 import { useScrollPosition } from "./useScrollPosition";
-let height = "120px";
+let height = "100px";
 let login = {
   margin: "0 15px",
   cursor: "pointer",
@@ -43,6 +43,7 @@ export const useStyles = makeStyles({
     transition: "transform 300ms ease-in-out",
     position: "fixed",
     height: height,
+    // backgroundColor:'#d5d5d5',
     // padding: 10px 100px,
     width: "100vw",
     // align-content: center,
@@ -77,7 +78,7 @@ export const useStyles = makeStyles({
     width: (props) => (props.register ? "" : ""),
     // fontWeight: "bold",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "end",
     color: "#fff",
     height: "40px",
   },
@@ -144,7 +145,7 @@ export const useStyles = makeStyles({
     color: Color.primary,
     display: "flex",
     flexDirection: "column",
-    // alignItems:'center',
+    // alignItems:'end',
     justifyContent: "center",
     textAlign: "center",
     verticalAlign: "bottom",
