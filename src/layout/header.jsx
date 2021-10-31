@@ -4,7 +4,8 @@ import { makeStyles } from "@mui/styles";
 import { withRouter } from "react-router";
 import { RiSearch2Line } from "react-icons/ri";
 import Color from "../styles/js/style";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import Image2 from '../img/homepage.png'
 import { useScrollPosition } from "./useScrollPosition";
 let height = "100px";
 let login = {
@@ -22,37 +23,32 @@ let login = {
   verticalAlign: "bottom",
   color: (props) => (props.color ? "#000" : "#fff"),
   paddingTop: "2px",
-  marginRight:'120px',
+  marginRight: "120px",
   // textTransform: "uppercase",
   "&:hover": {
     color: Color.primaryDark,
     transition: "all .2s ease-out",
   },
-}
+};
 export const useStyles = makeStyles({
   header: {
-    fontFamily: "Playfair Display,Helvetica",
+   
   },
 
   container: {
     top: 0,
-    fontFamily: "Playfair Display,Helvetica",
+   
     left: 0,
     transform: (props) =>
       !props.sticky ? "translateY(-100%)" : "translateY(0)",
     transition: "transform 300ms ease-in-out",
     position: "fixed",
     height: height,
-    // backgroundColor:'#d5d5d5',
-    // padding: 10px 100px,
     width: "100vw",
-    // align-content: center,
     zIndex: "10",
-    // margin:'0 4rem'
     flexWrap: "wrap",
     display: "flex",
     alignItems: "center",
-    // justifyContent: "space-between",
     background: (props) => (!props.navbar ? "" : "rgba(0,0,0,0.2)"),
     // margin:'0 4rem'
     // margin:'0 4rem'
@@ -65,10 +61,10 @@ export const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: 24,
-    fontSize:48,
-    width: 220,
-    color:Color.primaryDark,
-    fontFamily: "Playfair Display,Helvetica",
+    fontSize: 48,
+    width: 180,
+    color: Color.primaryDark,
+   fontWeight: "bold",
     margin: "0 2% 0 5%",
   },
   headerBtns: {
@@ -117,19 +113,22 @@ export const useStyles = makeStyles({
     textAlign: "center",
     verticalAlign: "bottom",
     paddingTop: "2px",
+    position: "relative",
     transition: "all .2s ease-out",
+  
     "&:hover": {
       color: Color.primary,
       transition: "all .2s ease-out",
       "&::after": {
         content: '""',
-        //    width: 100px,
+        // width: "100px",
         height: "2px",
         display: "block",
-        // width: "100%",
+        width: "100%",
         background: Color.primary,
-        position: "relative",
-        // bottom: "0px",
+        position: "absolute",
+        bottom: "-2px",
+        // bottom: "-3px",
         animationName: "$lolo",
         animationDuration: ".5s",
       },
@@ -151,42 +150,36 @@ export const useStyles = makeStyles({
     verticalAlign: "bottom",
     paddingTop: "5px",
     userSelect: "none",
+    position: "relative",
     // textTransform: "uppercase",
     "&:hover": {
       color: Color.primary,
       transition: "all .2s ease-out",
       "&::after": {
         content: '""',
-        //    width: 100px,
+        width: "100%",
+          //  width: 100px,
         height: "2px",
         display: "block",
         background: Color.primary,
-        position: "relative",
-        bottom: "0px",
+        position: "absolute",
+        bottom: "-2px",
         animationName: "$lolo",
         animationDuration: ".5s",
       },
     },
 
-    "&::after": {
-      content: '""',
-      height: "2px",
-      display: "block",
-      background: Color.primary,
-      position: "relative",
-      bottom: "0px",
-    },
   },
   "@keyframes lolo": {
     "0%": {
       opacity: 0,
-      width:'0%',
-      bottom: "-4px",
+      width: "0%",
+      bottom: "-10px",
     },
     "100%": {
       opacity: 1,
-      width:'100%',
-      bottom: "0px",
+      width: "100%",
+      bottom: "-2px",
     },
   },
   LanCh: {
@@ -234,25 +227,25 @@ export const useStyles = makeStyles({
     position: "absolute",
     height: 40,
   },
-  login: {...login},
+  login: { ...login },
   loginPage: {
     ...login,
-    color:Color.primary,
-        "&::after": {
+    color: Color.primary,
+    "&::after": {
       content: '""',
       height: "2px",
       display: "block",
       background: Color.primary,
       position: "relative",
       bottom: "0px",
-      borderRadius:2
+      borderRadius: 2,
     },
   },
   contactUs: {
     cursor: "pointer",
     // border: "2px solid #0090FD",
     // borderRadius: "8px",
-    color: props=>props.sele==='contact'?"#fff":Color.primary,
+    color: (props) => (props.sele === "contact" ? "#fff" : Color.primary),
     margin: "0 100px 0 30px",
     fontSize: "16px",
     width: "140px",
@@ -260,15 +253,15 @@ export const useStyles = makeStyles({
     display: "flex",
     fontWeight: "bold",
     flexDirection: "column",
-     backgroundColor:  props=>props.sele==='contact'?Color.primary:'',
+    backgroundColor: (props) => (props.sele === "contact" ? Color.primary : ""),
     justifyContent: "center",
     // alignItems: 'center',
     textAlign: "center",
     verticalAlign: "bottom",
     "&:hover": {
-      color: props => "#fff",
+      color: (props) => "#fff",
       backgroundColor: Color.primary,
-      borderColor: props => props.color ? Color.primary : "",
+      borderColor: (props) => (props.color ? Color.primary : ""),
       transition: "all .3s ease-in-out",
       // backgroundColor:'rgba(0,144,253,0.5)'
     },
@@ -280,7 +273,12 @@ function Header({ history }) {
   const [sticky, setSticky] = useState(true);
   const [navbar, setNavbar] = useState(false);
   const [color, setColor] = useState(false);
-  const classes = useStyles({ sticky: sticky, navbar: navbar, color: color ,sele:sele });
+  const classes = useStyles({
+    sticky: sticky,
+    navbar: navbar,
+    color: color,
+    sele: sele,
+  });
   useScrollPosition(
     ({ prevPos, currPos }) => {
       const isShow = currPos.y > prevPos.y;
@@ -320,16 +318,14 @@ function Header({ history }) {
 
   return (
     <div className={classes.container}>
-      <div className={classes.Logo}>
-       Gaseik.
-      </div>
+      <div className={classes.Logo}>Gaseik.</div>
       <div className={classes.headerBtns}>
-      <div
+        <div
           className={sele === "about" ? classes.SeleBtns : classes.btns}
           onClick={() => {
             setSele("about");
             history.push("/about");
-            window.scrollTo({top:0,behavior:'smooth'})
+            window.scrollTo({ top: 0, behavior: "smooth" });
             setColor(false);
           }}
         >
@@ -338,7 +334,7 @@ function Header({ history }) {
         <div
           className={sele === "skills" ? classes.SeleBtns : classes.btns}
           onClick={() => {
-            history.push( "/skills");
+            history.push("/skills");
             setSele("skills");
             // window.scrollTo({top:0,behavior:'smooth'})
             setColor(true);
@@ -349,15 +345,15 @@ function Header({ history }) {
         <div
           className={sele === "projects" ? classes.SeleBtns : classes.btns}
           onClick={() => {
-            history.push( "/projects");
+            history.push("/projects");
             setSele("projects");
-            window.scrollTo({top:0,behavior:'smooth'})
+            window.scrollTo({ top: 0, behavior: "smooth" });
             setColor(false);
           }}
         >
           Projects
         </div>
-        
+
         <div className={classes.search}>
           <RiSearch2Line />
         </div>
@@ -368,7 +364,7 @@ function Header({ history }) {
           onClick={() => {
             setSele("contact");
             history.push("/contact");
-            
+
             setColor(false);
           }}
           transition="glide-right"

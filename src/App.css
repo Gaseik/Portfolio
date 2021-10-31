@@ -30,9 +30,23 @@
   width: 30%;
   position: absolute;
   right: 0;
+  animation-name: background1 ;
+  animation-duration: 1s;
+ 
+ 
 }
+
 .App-link {
   color: #61dafb;
+}
+
+@keyframes background1 {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 30%;
+  }
 }
 
 @keyframes App-logo-spin {
