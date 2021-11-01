@@ -1,10 +1,15 @@
 import * as React from "react";
 import { makeStyles } from "@mui/styles";
+import {useState,useEffect}  from 'react'
 import color, { style } from "../styles/js/style";
 import { withRouter } from "react-router";
 import Image1 from "../img/aa12.png";
 import { SiC } from "react-icons/si";
 import { FaLinkedinIn, FaGithubAlt } from "react-icons/fa";
+import Loading from '../Component/loading'
+
+
+
 export const useStyles = makeStyles((theme) => ({
   container: {
     width: "100%",
@@ -110,10 +115,27 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 function Home({ history }) {
+  const [isloading,setIsloading] = useState(true)
   const classes = useStyles();
+
+
+  React.useEffect(() => {
+    fetch(Image1)
+      .then(resp => resp.blob())
+      .then(blob => {
+        let url = URL.createObjectURL(blob);
+        let img = new Image();
+        // Image loading is an asynchronous operation
+        img.onload = e => {
+          setIsloading(false)
+        }
+        img.src = url;
+      });
+  })
 
   return (
     <div className={classes.container}>
+      <Loading isloading={isloading}/>
       <div className={classes.left}></div>
       <div className={classes.icons}>
         <div
