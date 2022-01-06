@@ -11,10 +11,10 @@ import Grid from "@mui/material/Grid";
 export const useStyles = makeStyles((theme) => ({
   container: {
     width: "100%",
-    height: "100vh",
+    height: "100%",
     // display: "flex",
     position: "relative",
-    // alignItems: "center",
+    margin:'4rem 0'
   },
   title: {
     margin: "2rem 0",
@@ -43,7 +43,45 @@ export const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   },
+  more:{
+    ...style.btn,
+    margin:'50px auto ',
+    fontSize: '24px',
+    borderRadius:'50px',
+    padding:'5px 2rem',
+    color:color.primaryDark,
+    border: '3px solid '+color.primaryDark,
+    // background: color.primary,
+    "&:hover":{
+      color:color.primary,
+      border: '3px solid '+color.primary,
+      transition:'all .2s ease-in-out',
+  }
+  }
 }));
+
+const PPs = [
+  {
+    title: "Mercury",
+    image: Image1,
+    description: "Anti-counterfeiting System",
+  },
+  {
+    title: "Hannlync",
+    image: Image1,
+    description: "Offical website",
+  },
+  {
+    title: "Janitor (Mobile)",
+    image: Image1,
+    description: "Assistant application",
+  },
+  {
+    title: "CitizenApp (Mobile)",
+    image: Image1,
+    description: "Assistant application",
+  },
+];
 
 function Projects({ history, setIsloading }) {
   const classes = useStyles();
@@ -70,10 +108,16 @@ function Projects({ history, setIsloading }) {
             <div className={classes.titleName}>Projects</div>
             <div className={classes.bar}></div>
           </div>
-          <Project />
-          <Project />
-          <Project />
-          <Project />
+          <Grid item xs={12}>
+            <Grid container spacing={0}>
+            {PPs.map((P) => (
+            <Project project={P} />
+          ))}
+            </Grid>
+          
+          </Grid>
+          <div className={classes.more}>More</div>
+         
         </Grid>
       </Grid>
     </Grid>
@@ -92,52 +136,73 @@ export const PStyles = makeStyles((theme) => ({
     overflow: "hidden",
     transition: "all .1s ease-in-out",
     cursor: "pointer",
-    "&:hover":{
-      "& $blur":{
-        background: 'rgba(0,0,0,.7)',
-        position: 'absolute',
-        index:2,
+    "&:hover": {
+      "& $blur": {
+        background: "rgba(0,0,0,.7)",
+        position: "absolute",
+        index: 2,
         opacity: 1,
-        width:'90%',
-        height: '90%',
-        display: "block",
+        width: "90%",
+        height: "90%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         transition: "all 0.3s ease-in-out",
       },
-    }
+    },
   },
   blur: {
-    background: 'rgba(0,0,0,.7)',
-    position: 'absolute',
-    index:2,
-    opacity:0,
-    width: '100%',
-    height: '100%',
-    display: "block",
+    background: "rgba(0,0,0,.7)",
+    position: "absolute",
+    index: 2,
+    opacity: 0,
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
     transition: "all 0.3s ease-in-out",
   },
-  img:{
-    width: (props) => (props.in ? "110%" : '100%'),
+  title: {
+    color: "#fff",
+    fontSize: 24,
+    // fontWeight: "bold",
+  },
+  bar:{
+    width: "100%",
+    height:'3px',
+    display: 'flex',
+    background: color.primary,
+    margin:'5px 0'
+  },
+  img: {
+    width: (props) => (props.in ? "110%" : "100%"),
     transition: "all 0.2s ease-in-out",
+  },
+  description: {
+    color:'#f4f4f4'
   }
 }));
 
-function Project({}) {
-  const [inornot, setInornot] = useState(false);
-  const classes = PStyles({ in: inornot });
-  // useEffect(() => {console.log(inornot)},[inornot])
+function Project({ project }) {
+  const classes = PStyles();
+
   return (
     <Grid
       item
       xs={6}
       className={classes.project}
-      onMouseEnter={() => setInornot(true)}
-      onMouseLeave={() => setInornot(false)}
     >
       {/* <div className={classes.project}></div> */}
-      <img src={Image1} alt="23" className={classes.img}/>
+      <img src={project.image} alt={project.title} className={classes.img} />
       <div className={classes.blur}>
-        <div className={classes.title}></div>
-        <div></div>
+        <div className={classes.title}>
+          {project.title}
+          <div className={classes.bar}></div>
+        </div>
+
+        <div className={classes.description}>{project.description}</div>
       </div>
     </Grid>
   );

@@ -6,6 +6,7 @@ import { withRouter } from "react-router";
 import Loading from '../Component/loading'
 import Home from './home'
 import Projects from './ProjectsPreview'
+import About from './About'
 
 
 export const useStyles = makeStyles((theme) => ({
@@ -45,8 +46,8 @@ function LandingPage({ history }) {
       <Loading isloading={isloading}/>
       <Home setIsloading={setIsloading}/>
       <Projects setIsloading={setIsloading}/>
-      
-    </div>
+      <About setIsloading={setIsloading}/>
+    </div>  
   );
 }
 

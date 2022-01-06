@@ -6,7 +6,7 @@ import color, { style } from "../styles/js/style";
 export const useStyles = makeStyles((theme) => ({
   loading: {
     zIndex: (props) => (props.isloading ? 10 : -1),
-    width: "100vw",
+    width: "100%",
     height: "100vh",
     // height: props=>props.isloading?'100vh':'0',
     position: "absolute",

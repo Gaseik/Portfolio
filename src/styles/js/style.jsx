@@ -18,6 +18,11 @@ const color = {
     pink:'#F1AAE3',
     partners:'#95D8C6'
 }
+export const breakpoints = {
+  xs: "@media (max-width: 450px)",
+  sm: "@media (max-width: 600px)",
+  md: "@media (max-width:1025px)",
+};
 const  btn = {
   height:45,
   borderRadius:10,
@@ -29,7 +34,7 @@ const  btn = {
   cursor:'pointer',
   "&:hover":{
       opacity:".8",
-      transition:'all .2s ease-in-out',
+      transition:'all .3s ease-in-out',
   }
 }
 export const style = {

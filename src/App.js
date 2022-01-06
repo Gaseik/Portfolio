@@ -5,6 +5,8 @@ import Header from "./layout/header";
 import Home from "./pages/home";
 import LandingPage from "./pages/LandingPage";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import Footer from "./layout/footer"
+
 
 const theme = createTheme({});
 
@@ -15,6 +17,7 @@ function App() {
         <Router>
           <Header />
           <LandingPage />
+          <Footer/>
         </Router>
       </div>
     </ThemeProvider>
