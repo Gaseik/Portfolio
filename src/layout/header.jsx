@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import { RiSearch2Line } from "react-icons/ri";
 import Color from "../styles/js/style";
 import { NavLink } from "react-router-dom";
-import Image2 from '../img/homepage.png'
+import Image2 from "../img/homepage.png";
 import { useScrollPosition } from "./useScrollPosition";
 let height = "100px";
 let login = {
@@ -31,13 +31,10 @@ let login = {
   },
 };
 export const useStyles = makeStyles({
-  header: {
-   
-  },
+  header: {},
 
   container: {
     top: 0,
-   
     left: 0,
     transform: (props) =>
       !props.sticky ? "translateY(-100%)" : "translateY(0)",
@@ -49,9 +46,7 @@ export const useStyles = makeStyles({
     flexWrap: "wrap",
     display: "flex",
     alignItems: "center",
-    background: (props) => (!props.navbar ? "" : "rgba(0,0,0,0.2)"),
-    // margin:'0 4rem'
-    // margin:'0 4rem'
+    background: (props) => (!props.navbar ? "" : Color.primaryDark),
   },
 
   Logo: {
@@ -63,9 +58,10 @@ export const useStyles = makeStyles({
     height: 24,
     fontSize: 48,
     width: 180,
-    color: Color.primaryDark,
-   fontWeight: "bold",
+    color: (props) => (props.navbar ? Color.primary : Color.primaryDark),
+    fontWeight: "bold",
     margin: "0 2% 0 5%",
+    transition:'all 0.2s ease-in-out',
   },
   headerBtns: {
     marginRight: (props) => (props.register ? "4rem" : "1rem"),
@@ -107,7 +103,7 @@ export const useStyles = makeStyles({
     fontSize: "18px",
     height: "25px",
     display: "flex",
-    color: (props) => (props.color ? "#000" : Color.primaryDark),
+    color: (props) => (props.navbar ? "#fff" : Color.primaryDark),
     flexDirection: "column",
     justifyContent: "center",
     textAlign: "center",
@@ -115,7 +111,7 @@ export const useStyles = makeStyles({
     paddingTop: "2px",
     position: "relative",
     transition: "all .2s ease-out",
-  
+
     "&:hover": {
       color: Color.primary,
       transition: "all .2s ease-out",
@@ -151,14 +147,23 @@ export const useStyles = makeStyles({
     paddingTop: "5px",
     userSelect: "none",
     position: "relative",
-    // textTransform: "uppercase",
+    "&::after": {
+      content: '""',
+      width: "100%",
+      //  width: 100px,
+      height: "2px",
+      display: "block",
+      background: Color.primary,
+      position: "absolute",
+      bottom: "-2px",
+    },
     "&:hover": {
       color: Color.primary,
       transition: "all .2s ease-out",
       "&::after": {
         content: '""',
         width: "100%",
-          //  width: 100px,
+        //  width: 100px,
         height: "2px",
         display: "block",
         background: Color.primary,
@@ -168,7 +173,6 @@ export const useStyles = makeStyles({
         animationDuration: ".5s",
       },
     },
-
   },
   "@keyframes lolo": {
     "0%": {
@@ -351,15 +355,13 @@ function Header({ history }) {
             setColor(false);
           }}
         >
-          Projects
+          Contact
         </div>
 
-        <div className={classes.search}>
-          <RiSearch2Line />
-        </div>
+      
       </div>
       <div className={classes.right}>
-        <div
+        {/* <div
           className={sele === "contact" ? classes.loginPage : classes.login}
           onClick={() => {
             setSele("contact");
@@ -371,7 +373,7 @@ function Header({ history }) {
           // to="/login"
         >
           Contact
-        </div>
+        </div> */}
         {/* <div
           className={classes.contactUs}
           onClick={() => {

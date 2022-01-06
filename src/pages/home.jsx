@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import {useState,useEffect}  from 'react'
 import color, { style } from "../styles/js/style";
 import { withRouter } from "react-router";
-import Image1 from "../img/aa12.png";
+import Image1 from "../img/m31.png";
 import { SiC } from "react-icons/si";
 import { FaLinkedinIn, FaGithubAlt } from "react-icons/fa";
 import Loading from '../Component/loading'
@@ -28,6 +28,14 @@ export const useStyles = makeStyles((theme) => ({
     animationName: "$background1",
     animationDuration: "1.5s",
   },
+  "@keyframes background1": {
+    from: {
+      width: "100%",
+    },
+    to: {
+      width: "30%",
+    },
+  },
   image: {
     width: "40%",
     minWidth: "500px",
@@ -48,14 +56,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
 
-  "@keyframes background1": {
-    from: {
-      width: "100%",
-    },
-    to: {
-      width: "30%",
-    },
-  },
+
   developer: {
     position: "absolute",
     fontWeight: "bold",
@@ -114,8 +115,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home({ history }) {
-  const [isloading,setIsloading] = useState(true)
+function Home({ history , setIsloading }) {
   const classes = useStyles();
 
 
@@ -135,7 +135,6 @@ function Home({ history }) {
 
   return (
     <div className={classes.container}>
-      <Loading isloading={isloading}/>
       <div className={classes.left}></div>
       <div className={classes.icons}>
         <div

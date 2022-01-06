@@ -1,16 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from './layout/header'
-import Home from './pages/home'
+import Header from "./layout/header";
+import Home from "./pages/home";
+import LandingPage from "./pages/LandingPage";
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+
+const theme = createTheme({});
+
 function App() {
   return (
-    <div className="App">
-      <Router>
-      <Header/>
-      <Home/>
-      </Router>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Router>
+          <Header />
+          <LandingPage />
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 }
 
