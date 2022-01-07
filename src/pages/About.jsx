@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles";
 import color, { style } from "../styles/js/style";
 import { withRouter } from "react-router";
 import Image2 from "../img/6dc7cbdfeb72054c317824f67ca6368a.jpeg";
+import {HiDownload} from 'react-icons/hi'
 export const useStyles = makeStyles((theme) => ({
   container: {
     width: "90%",
@@ -43,6 +44,18 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: "2rem",
     fontSize: "16px",
   },
+  download:{
+    ...style.btn,
+    width: "25%",
+    borderRadius: "30px",
+    justifySelf:'inherit',
+    margin:'2rem 0',
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+
+  //right
   right: {
     position: "relative"
   },
@@ -102,6 +115,7 @@ function About({}) {
               possess two years of experience in a tech company, where I am
               working part-time as a web designer.
             </div>
+            <div className={classes.download}>My Resume<HiDownload fontSize={16} style={{marginLeft:'.5rem'}}/></div>
           </Grid>
         </Grid>
         <Grid item xs={12} md={6}>

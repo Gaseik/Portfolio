@@ -31,11 +31,16 @@ const  btn = {
   padding:'0 1.5rem',
   display:'flex',
   alignItems:'center',
+  color:color.primaryDark,
   cursor:'pointer',
+  border: '3px solid '+color.primaryDark,
+
   "&:hover":{
-      opacity:".8",
-      transition:'all .3s ease-in-out',
-  }
+    opacity:.8,
+    color:color.primary,
+    border: '3px solid '+color.primary,
+    transition:'all .2s ease-in-out',
+}
 }
 export const style = {
     container: {
