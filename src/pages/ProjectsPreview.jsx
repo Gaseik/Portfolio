@@ -149,6 +149,10 @@ export const PStyles = makeStyles((theme) => ({
         justifyContent: "center",
         transition: "all 0.3s ease-in-out",
       },
+      "& $img": {
+        width: '115%',
+        transition: "all 0.2s ease-in-out",
+      },
     },
   },
   blur: {
@@ -191,7 +195,8 @@ function Project({ project }) {
   return (
     <Grid
       item
-      xs={6}
+      xs={12}
+      sm={6}
       className={classes.project}
     >
       {/* <div className={classes.project}></div> */}
