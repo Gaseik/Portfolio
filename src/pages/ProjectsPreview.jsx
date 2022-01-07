@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
     height: "100%",
     // display: "flex",
     position: "relative",
-    margin:'4rem 0'
+    margin: "4rem 0",
   },
   title: {
     margin: "2rem 0",
@@ -43,40 +43,44 @@ export const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   },
-  more:{
+  more: {
     ...style.btn,
-    margin:'50px auto ',
-    fontSize: '24px',
-    borderRadius:'50px',
-    padding:'5px 2rem',
-    color:color.primaryDark,
-    border: '3px solid '+color.primaryDark,
+    margin: "50px auto ",
+    fontSize: "24px",
+    borderRadius: "50px",
+    padding: "5px 2rem",
+    color: color.primaryDark,
+    border: "3px solid " + color.primaryDark,
     // background: color.primary,
-    "&:hover":{
-      color:color.primary,
-      border: '3px solid '+color.primary,
-      transition:'all .2s ease-in-out',
-  }
-  }
+    "&:hover": {
+      color: color.primary,
+      border: "3px solid " + color.primary,
+      transition: "all .2s ease-in-out",
+    },
+  },
 }));
 
 const PPs = [
   {
     title: "Mercury",
+    id:'a1',
     image: Image1,
     description: "Anti-counterfeiting System",
   },
   {
+    id:'a2',
     title: "Hannlync",
     image: Image1,
     description: "Offical website",
   },
   {
+    id:'a3',
     title: "Janitor (Mobile)",
     image: Image1,
     description: "Assistant application",
   },
   {
+    id:'a4',
     title: "CitizenApp (Mobile)",
     image: Image1,
     description: "Assistant application",
@@ -110,14 +114,12 @@ function Projects({ history, setIsloading }) {
           </div>
           <Grid item xs={12}>
             <Grid container spacing={0}>
-            {PPs.map((P) => (
-            <Project project={P} />
-          ))}
+              {PPs.map((P) => (
+                <Project project={P} key={P.id} />
+              ))}
             </Grid>
-          
           </Grid>
           <div className={classes.more}>More</div>
-         
         </Grid>
       </Grid>
     </Grid>
@@ -150,7 +152,7 @@ export const PStyles = makeStyles((theme) => ({
         transition: "all 0.3s ease-in-out",
       },
       "& $img": {
-        width: '115%',
+        width: "115%",
         transition: "all 0.2s ease-in-out",
       },
     },
@@ -173,32 +175,27 @@ export const PStyles = makeStyles((theme) => ({
     fontSize: 24,
     // fontWeight: "bold",
   },
-  bar:{
+  bar: {
     width: "100%",
-    height:'3px',
-    display: 'flex',
+    height: "3px",
+    display: "flex",
     background: color.primary,
-    margin:'5px 0'
+    margin: "5px 0",
   },
   img: {
     width: (props) => (props.in ? "110%" : "100%"),
     transition: "all 0.2s ease-in-out",
   },
   description: {
-    color:'#f4f4f4'
-  }
+    color: "#f4f4f4",
+  },
 }));
 
 function Project({ project }) {
   const classes = PStyles();
 
   return (
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      className={classes.project}
-    >
+    <Grid item xs={12} sm={6} className={classes.project}>
       {/* <div className={classes.project}></div> */}
       <img src={project.image} alt={project.title} className={classes.img} />
       <div className={classes.blur}>

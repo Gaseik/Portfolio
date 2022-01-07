@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
-import color, { style } from "../styles/js/style";
+import color, { style, breakpoints } from "../styles/js/style";
 import { withRouter } from "react-router";
 import { AiOutlineArrowUp } from "react-icons/ai";
 export const useStyles = makeStyles((theme) => ({
@@ -14,19 +14,23 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     justifyContent: "center",
     position: "fixed",
+    backgroundColor:color.primaryDark,
     right: 50,
-    bottom: 50,
+    bottom: (props) => (props.isVisible ? 50 : 30),
     // bottom: (props) => (props.isVisible ? 50: -40),
-    fontSize: 50,
+    fontSize: 24,
     opacity: (props) => (props.isVisible ? 1 : 0),
     cursor: "pointer",
     // "transition-property": "transform",
-    "transition-property": "opacity",
+    "transition-property": "all",
     "transition-timing-function": "cubic-bezier(0.4, 0, 0.2, 1)",
     "transition-duration": "150ms",
     "&:hover": {
-        color:'#0090fd96',
-        transition:'all .3s ease-in-out',
+      color: '#fff',
+      transition: 'all .3s ease-in-out',
+    },
+    [breakpoints.sm]: {
+      fontSize: 32
     }
   },
   up: {
@@ -38,7 +42,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ToTop({}) {
+function ToTop({ }) {
   const [isVisible, setIsVisible] = useState(false);
   const classes = useStyles({ isVisible: isVisible });
 

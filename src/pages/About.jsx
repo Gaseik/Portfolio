@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import color, { style } from "../styles/js/style";
 import { withRouter } from "react-router";
 import Image2 from "../img/6dc7cbdfeb72054c317824f67ca6368a.jpeg";
-import {HiDownload} from 'react-icons/hi'
+import { HiDownload } from "react-icons/hi";
 export const useStyles = makeStyles((theme) => ({
   container: {
     width: "90%",
@@ -13,10 +13,10 @@ export const useStyles = makeStyles((theme) => ({
     position: "relative",
     marginTop: "50px",
     // margin: " 0",
-    padding: "10% 5%",
+    padding: "5% 5%",
   },
   title: {
-    margin: "2rem 0 7%",
+    margin: "0 0 7%",
     width: "100%",
   },
   titleName: {
@@ -44,25 +44,24 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: "2rem",
     fontSize: "16px",
   },
-  download:{
+  download: {
     ...style.btn,
     width: "25%",
     borderRadius: "30px",
-    justifySelf:'inherit',
-    margin:'2rem 0',
+    justifySelf: "inherit",
+    margin: "2rem 0",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
-
 
   //right
   right: {
-    position: "relative"
+    position: "relative",
   },
   img: {
     width: "50%",
     position: "relative",
-    zIndex:2,
+    zIndex: 2,
     "&::before": {
       content: "''",
       width: "100px",
@@ -79,18 +78,32 @@ export const useStyles = makeStyles((theme) => ({
     border: "5px solid " + color.primaryDark,
     position: "absolute",
     left: "10%",
-    top:'10%',
-    zIndex:1
+    top: "10%",
+    zIndex: 1,
   },
 }));
 
-function About({}) {
+function About({ aboutRef }) {
   const classes = useStyles();
 
+  const onScroll = () => {
+
+    const { scrollTop, scrollHeight, clientHeight } = aboutRef.current;
+    console.log(scrollTop)
+    if (aboutRef.current) {
+     
+      if (scrollTop + clientHeight === scrollHeight) {
+        console.log("reached bottom");
+      }
+    }
+  };
+
   return (
-    <div className={classes.container}>
+    <div className={classes.container} onScroll={()=>{console.log('about')}} ref={aboutRef}>
       <div className={classes.title}>
-        <div className={classes.titleName}>About</div>
+        <div className={classes.titleName} id={"about"}>
+          About
+        </div>
         <div className={classes.bar}></div>
       </div>
       <Grid container>
@@ -115,7 +128,10 @@ function About({}) {
               possess two years of experience in a tech company, where I am
               working part-time as a web designer.
             </div>
-            <div className={classes.download}>My Resume<HiDownload fontSize={16} style={{marginLeft:'.5rem'}}/></div>
+            <div className={classes.download}>
+              My Resume
+              <HiDownload fontSize={16} style={{ marginLeft: ".5rem" }} />
+            </div>
           </Grid>
         </Grid>
         <Grid item xs={12} md={6}>

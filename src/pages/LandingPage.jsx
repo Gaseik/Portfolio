@@ -34,7 +34,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LandingPage({ history }) {
+function LandingPage({ history , aboutRef}) {
   const [isloading,setIsloading] = useState(true)
   const classes = useStyles();
 
@@ -46,7 +46,7 @@ function LandingPage({ history }) {
       <Loading isloading={isloading}/>
       <Home setIsloading={setIsloading}/>
       <Projects setIsloading={setIsloading}/>
-      <About setIsloading={setIsloading}/>
+      <About setIsloading={setIsloading} aboutRef={aboutRef}/>
     </div>  
   );
 }
