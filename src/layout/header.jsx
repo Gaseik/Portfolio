@@ -272,17 +272,20 @@ export const useStyles = makeStyles({
   },
 });
 
-function Header({ history }) {
+function Header({ history,scrollToTop,aboutRef }) {
   const [sele, setSele] = useState("");
   const [sticky, setSticky] = useState(true);
   const [navbar, setNavbar] = useState(false);
   const [color, setColor] = useState(false);
+  
   const classes = useStyles({
     sticky: sticky,
     navbar: navbar,
     color: color,
     sele: sele,
   });
+  
+
   useScrollPosition(
     ({ prevPos, currPos }) => {
       const isShow = currPos.y > prevPos.y;
@@ -318,7 +321,14 @@ function Header({ history }) {
     } else {
       setColor(false);
     }
-  });
+  },[]);
+
+  useEffect(() => {
+    console.log()
+  },[]);
+
+
+ 
 
   return (
     <div className={classes.container}>
@@ -328,8 +338,10 @@ function Header({ history }) {
           className={sele === "about" ? classes.SeleBtns : classes.btns}
           onClick={() => {
             setSele("about");
-            history.push("/about");
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            // history.push("/about");
+            aboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            scrollToTop('about')
+            // window.scrollTo({ top: 0, behavior: "smooth" });
             setColor(false);
           }}
         >
