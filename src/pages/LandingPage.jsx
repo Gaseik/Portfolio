@@ -7,6 +7,7 @@ import Loading from '../Component/loading'
 import Home from './home'
 import Projects from './ProjectsPreview'
 import About from './About'
+import Contact from './Contact'
 
 
 export const useStyles = makeStyles((theme) => ({
@@ -34,7 +35,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LandingPage({ history , aboutRef}) {
+function LandingPage({ history , aboutRef,projectsRef,contactRef }) {
   const [isloading,setIsloading] = useState(true)
   const classes = useStyles();
 
@@ -45,8 +46,9 @@ function LandingPage({ history , aboutRef}) {
         <div className={classes.right}></div>
       <Loading isloading={isloading}/>
       <Home setIsloading={setIsloading}/>
-      <Projects setIsloading={setIsloading}/>
-      <About setIsloading={setIsloading} aboutRef={aboutRef}/>
+      <Projects setIsloading={setIsloading} projectsRef={projectsRef} />
+      <About setIsloading={setIsloading} aboutRef={aboutRef} />
+      <Contact setIsloading={setIsloading} contactRef={contactRef}/>
     </div>  
   );
 }

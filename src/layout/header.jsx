@@ -59,9 +59,9 @@ export const useStyles = makeStyles({
     fontSize: 48,
     width: 180,
     color: (props) => (props.navbar ? Color.primary : Color.primaryDark),
-    fontWeight: "bold",
+    // fontWeight: "bold",
     margin: "0 2% 0 5%",
-    transition:'all 0.2s ease-in-out',
+    transition: 'all 0.2s ease-in-out',
   },
   headerBtns: {
     marginRight: (props) => (props.register ? "4rem" : "1rem"),
@@ -272,19 +272,19 @@ export const useStyles = makeStyles({
   },
 });
 
-function Header({ history,scrollToTop,aboutRef }) {
+function Header({ history, scrollToTop, aboutRef ,projectsRef,contactRef }) {
   const [sele, setSele] = useState("");
   const [sticky, setSticky] = useState(true);
   const [navbar, setNavbar] = useState(false);
   const [color, setColor] = useState(false);
-  
+
   const classes = useStyles({
     sticky: sticky,
     navbar: navbar,
     color: color,
     sele: sele,
   });
-  
+
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
@@ -321,56 +321,58 @@ function Header({ history,scrollToTop,aboutRef }) {
     } else {
       setColor(false);
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     console.log()
-  },[]);
+  }, []);
 
 
- 
+
 
   return (
     <div className={classes.container}>
-      <div className={classes.Logo}>Gaseik.</div>
+      <div className={classes.Logo} onClick={()=>{ window.scrollTo({ top: 0, behavior: "smooth" });}}>Gaseik.</div>
       <div className={classes.headerBtns}>
+        <div
+          className={sele === "projects" ? classes.SeleBtns : classes.btns}
+          onClick={() => {
+            // history.push("/projects");
+            setSele("projects");
+            projectsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // window.scrollTo({top:0,behavior:'smooth'})
+            setColor(true);
+          }}
+        >
+          Projects
+        </div>
         <div
           className={sele === "about" ? classes.SeleBtns : classes.btns}
           onClick={() => {
             setSele("about");
             // history.push("/about");
             aboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            scrollToTop('about')
+            // scrollToTop('about')
             // window.scrollTo({ top: 0, behavior: "smooth" });
             setColor(false);
           }}
         >
           About
         </div>
+
         <div
-          className={sele === "skills" ? classes.SeleBtns : classes.btns}
+          className={sele === "contact" ? classes.SeleBtns : classes.btns}
           onClick={() => {
-            history.push("/skills");
-            setSele("skills");
-            // window.scrollTo({top:0,behavior:'smooth'})
-            setColor(true);
-          }}
-        >
-          Skills
-        </div>
-        <div
-          className={sele === "projects" ? classes.SeleBtns : classes.btns}
-          onClick={() => {
-            history.push("/projects");
-            setSele("projects");
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            history.push("/contact");
+            setSele("contact");
+            contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
             setColor(false);
           }}
         >
           Contact
         </div>
 
-      
+
       </div>
       <div className={classes.right}>
         {/* <div

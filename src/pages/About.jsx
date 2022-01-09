@@ -86,17 +86,7 @@ export const useStyles = makeStyles((theme) => ({
 function About({ aboutRef }) {
   const classes = useStyles();
 
-  const onScroll = () => {
-
-    const { scrollTop, scrollHeight, clientHeight } = aboutRef.current;
-    console.log(scrollTop)
-    if (aboutRef.current) {
-     
-      if (scrollTop + clientHeight === scrollHeight) {
-        console.log("reached bottom");
-      }
-    }
-  };
+  
 
   return (
     <div className={classes.container} onScroll={()=>{console.log('about')}} ref={aboutRef}>

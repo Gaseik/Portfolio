@@ -13,6 +13,8 @@ const theme = createTheme({});
 
 function App() {
   const About = useRef(null)
+  const Projects = useRef(null)
+  const Contact = useRef(null)
   const scrollToTop = (a) => {
     document.getElementById(a).scroll(0,0)
   }
@@ -23,8 +25,8 @@ function App() {
      
         <Router>
 
-          <Header scrollToTop={scrollToTop}  aboutRef={About}/>
-          <LandingPage aboutRef={About}/>
+          <Header scrollToTop={scrollToTop} aboutRef={About} projectsRef={Projects} contactRef={Contact}/>
+          <LandingPage aboutRef={About} projectsRef={Projects} contactRef={Contact}/>
           <Footer/>
           <ScrollToTop/>
         </Router>

@@ -63,31 +63,31 @@ export const useStyles = makeStyles((theme) => ({
 const PPs = [
   {
     title: "Mercury",
-    id:'a1',
+    id: "a1",
     image: Image1,
     description: "Anti-counterfeiting System",
   },
   {
-    id:'a2',
+    id: "a2",
     title: "Hannlync",
     image: Image1,
     description: "Offical website",
   },
   {
-    id:'a3',
+    id: "a3",
     title: "Janitor (Mobile)",
     image: Image1,
     description: "Assistant application",
   },
   {
-    id:'a4',
+    id: "a4",
     title: "CitizenApp (Mobile)",
     image: Image1,
     description: "Assistant application",
   },
 ];
 
-function Projects({ history, setIsloading }) {
+function Projects({ history, setIsloading, projectsRef }) {
   const classes = useStyles();
 
   React.useEffect(() => {
@@ -105,24 +105,26 @@ function Projects({ history, setIsloading }) {
   });
 
   return (
-    <Grid container className={classes.container}>
-      <Grid item xs={12}>
-        <Grid container>
-          <div className={classes.title}>
-            <div className={classes.titleName}>Projects</div>
-            <div className={classes.bar}></div>
-          </div>
-          <Grid item xs={12}>
-            <Grid container spacing={0}>
-              {PPs.map((P) => (
-                <Project project={P} key={P.id} />
-              ))}
+    <div className={classes.container} ref={projectsRef}>
+      <Grid container>
+        <Grid item xs={12}>
+          <Grid container>
+            <div className={classes.title}>
+              <div className={classes.titleName}>Projects</div>
+              <div className={classes.bar}></div>
+            </div>
+            <Grid item xs={12}>
+              <Grid container spacing={0}>
+                {PPs.map((P) => (
+                  <Project project={P} key={P.id} />
+                ))}
+              </Grid>
             </Grid>
+            <div className={classes.more}>More</div>
           </Grid>
-          <div className={classes.more}>More</div>
         </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 }
 
