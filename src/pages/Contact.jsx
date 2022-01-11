@@ -1,10 +1,40 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
-import color, { style } from "../styles/js/style";
+import color, { style, breakpoints } from "../styles/js/style";
 import { withRouter } from "react-router";
 import Image2 from "../img/6dc7cbdfeb72054c317824f67ca6368a.jpeg";
 import { HiDownload } from "react-icons/hi";
+import { useForm, ValidationError } from "@formspree/react";
+
+const inputStyle = {
+  padding: "1.5rem 2rem",
+  fontSize: 16,
+  outline: "none",
+  width: "100%",
+  color: "#000",
+  border: "1px solid " + color.primary,
+  background: "transparent",
+  "& input:focus-visible": {
+    outline: "none",
+    border: "none",
+  },
+  "input:focus": {
+    outline: "none",
+    border: "none",
+  },
+  [breakpoints.md]: {
+    border: "1px solid #fff",
+    padding: "1.5rem 2rem",
+    borderRadius: "4px",
+  },
+  [breakpoints.xs]: {
+    padding: "1.2rem 1rem",
+    borderRadius: "4px",
+    fontSize: "12px",
+  },
+};
+
 export const useStyles = makeStyles((theme) => ({
   container: {
     width: "90%",
@@ -34,17 +64,70 @@ export const useStyles = makeStyles((theme) => ({
     background: color.primary,
   },
   input: {
-    background: "none",
+    ...inputStyle,
     width: "100%",
-    border: "none",
+    fontFamily: "Playfair Display",
+    marginBottom: "1rem",
   },
   out: {
-    border:'1px solid '+color.primaryDark,
-    
+    border: "1px solid " + color.primaryDark,
+    height: "5rem",
+  },
+  form: {
+    // background: color.pink,
+  },
+  MutiStyle: {
+    padding: "1.5rem 2rem",
+    border: "1px solid " + color.primary,
+    background: "transparent",
+    fontSize: 16,
+    outline: "none",
+    width: "100%",
+    color: color.primaryDark,
+    resize: "none",
+    fontFamily: "Playfair Display",
+    // background: "transparent",
+    "& input:focus-visible": {
+      outline: "none",
+      border: "none",
+    },
+    "input:focus": {
+      outline: "none",
+      border: "none",
+    },
+    [breakpoints.xs]: {
+      fontSize: "12px",
+    },
+  },
+  submit: {
+    backgroundColor: color.primaryDark,
+    height: "100%",
+    display: "flex",
+    width: "100%",
+    fontFamily: "Playfair Display",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "36px",
+    cursor: "pointer",
+    borderRadius: "20px",
+    border:'none',
+    "&:hover": {
+      color:color.primary,
+      // opacity:.7,
+      transition:'all .3s ease-in-out'
+    }
+    // border: "10px solid "
   },
 }));
 
 function Contact({ contactRef }) {
+  const [data, set] = React.useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [state, handleSubmit] = useForm("xvolgnbp");
   const classes = useStyles();
 
   return (
@@ -55,15 +138,50 @@ function Contact({ contactRef }) {
         </div>
         <div className={classes.bar}></div>
       </div>
-      <Grid container justifyContent="center">
-        <Grid item xs={10} md={8}>
-          <form className={classes.form}>
-            <div className={classes.out}>
-              <input type="text" className={classes.input} plac />
+      <form  onSubmit={handleSubmit}>
+        <Grid container justifyContent="space-between">
+          <Grid item xs={10} md={8}>
+            <div className={classes.form}>
+              <input
+                type="text"
+                className={classes.input}
+                placeholder="Name"
+                name="name"
+                key="name"
+              />
+              <input
+                // type="text"
+                className={classes.input}
+                placeholder="Email"
+                name="email"
+                type="email" 
+                key="email"
+              />
+              <input
+                type="text"
+                className={classes.input}
+                placeholder="Subject"
+                name="subject"
+                key="sub"
+              />
+
+              <textarea
+                type="text"
+                className={classes.MutiStyle}
+                rows={4}
+                // multipleplaceholder="Subject"
+                key="message"
+                id="message"
+                name="message"
+                placeholder="Leave your message here...."
+              />
             </div>
-          </form>
+          </Grid>
+          <Grid item xs={2} md={3}>
+            <button type="submit" disabled={state.submitting} className={classes.submit}>SEND</button>
+          </Grid>
         </Grid>
-      </Grid>
+      </form>
     </div>
   );
 }
