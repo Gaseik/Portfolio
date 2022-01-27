@@ -41,8 +41,8 @@ export const useStyles = makeStyles((theme) => ({
   },
   content: {
     textAlign: "initial",
-    marginBottom: "2rem",
     fontSize: "16px",
+    marginBottom:'5rem'
   },
   download: {
     ...style.btn,
@@ -80,6 +80,7 @@ export const useStyles = makeStyles((theme) => ({
     left: "10%",
     top: "10%",
     zIndex: 1,
+   
   },
 }));
 
@@ -100,24 +101,18 @@ function About({ aboutRef }) {
         <Grid item xs={12} md={6}>
           <Grid item xs={8}>
             <div className={classes.main}>
-              I am a problem solver, an art enthusiast, and a holistic designer
+              I am a problem solver, an art enthusiast, and a holistic developer
               who is performing at the junction of design and crafting
               meaningful ideas.
             </div>
             <div className={classes.content}>
-              With a product specialist background, I understand how to put the
+              With a psychology background, I understand how to put the
               user at the center of design. I do this by empathizing with the
               users and discovering their motivations, needs, and pain points. I
               possess two years of experience in a tech company, where I am
-              working part-time as a web designer.
+              working part-time as a web developer.
             </div>
-            <div className={classes.content}>
-              With a product specialist background, I understand how to put the
-              user at the center of design. I do this by empathizing with the
-              users and discovering their motivations, needs, and pain points. I
-              possess two years of experience in a tech company, where I am
-              working part-time as a web designer.
-            </div>
+           
             <div className={classes.download}>
               My Resume
               <HiDownload fontSize={16} style={{ marginLeft: ".5rem" }} />

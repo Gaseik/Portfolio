@@ -4,9 +4,13 @@ import { useState, useEffect } from "react";
 import color, { style } from "../styles/js/style";
 import { withRouter } from "react-router";
 import Image1 from "../img/JanitorMockup.png";
+import HannlyncImage from "../img/HanMockup.png";
+import JanitorImage from "../img/JanitorNNMockup.png";
+import CititzenImage from "../img/CitizenMockup.png";
 import { SiC } from "react-icons/si";
 import Loading from "../Component/loading";
 import Grid from "@mui/material/Grid";
+import { IoIosArrowDown } from "react-icons/io";
 
 export const useStyles = makeStyles((theme) => ({
   container: {
@@ -45,18 +49,41 @@ export const useStyles = makeStyles((theme) => ({
   },
   more: {
     ...style.btn,
+    flexDirection: "column",
+    overflow: "hidden",
     margin: "50px auto ",
     fontSize: "24px",
     borderRadius: "50px",
     padding: "5px 2rem",
+    width: "3rem",
     color: color.primaryDark,
     border: "3px solid " + color.primaryDark,
+    position: "relative",
     // background: color.primary,
     "&:hover": {
       color: color.primary,
       border: "3px solid " + color.primary,
-      transition: "all .2s ease-in-out",
+      transition: "all .4s ease-in-out",
+      "& $cc": {
+        top: 55,
+        color: color.primary,
+        transition: "all .4s ease-in-out",
+      },
+      "& $down": {
+        top: 15,
+        color: color.primary,
+        transition: "all .4s ease-in-out",
+      },
     },
+  },
+  down: {
+    fontSize: "28px",
+    position: "absolute",
+    top: -25,
+  },
+  cc: {
+    position: "absolute",
+    top: 10,
   },
 }));
 
@@ -65,24 +92,28 @@ const PPs = [
     title: "Mercury",
     id: "a1",
     image: Image1,
+    link:'https://baozhen.hannlync.com/',
     description: "Anti-counterfeiting System",
   },
   {
     id: "a2",
     title: "Hannlync",
-    image: Image1,
-    description: "Offical website",
+    image: HannlyncImage,
+    link:"https://www.hannlync.com/",
+    description: "Offical website(RWD)",
   },
   {
     id: "a3",
     title: "Janitor (Mobile)",
-    image: Image1,
+    link:'https://janitorapp.hannlync.com/login',
+    image: JanitorImage,
     description: "Assistant application",
   },
   {
     id: "a4",
     title: "CitizenApp (Mobile)",
-    image: Image1,
+    image: CititzenImage,
+    link:"https://citizenapp.hannlync.com/login",
     description: "Assistant application",
   },
 ];
@@ -120,7 +151,10 @@ function Projects({ history, setIsloading, projectsRef }) {
                 ))}
               </Grid>
             </Grid>
-            <div className={classes.more}>More</div>
+            {/* <div className={classes.more}>
+              <IoIosArrowDown  className={classes.down}/>
+              <div className={classes.cc}>More</div>
+            </div> */}
           </Grid>
         </Grid>
       </Grid>
@@ -170,6 +204,7 @@ export const PStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    cursor: "pointer",
     transition: "all 0.3s ease-in-out",
   },
   title: {
@@ -187,6 +222,7 @@ export const PStyles = makeStyles((theme) => ({
   img: {
     width: (props) => (props.in ? "110%" : "100%"),
     transition: "all 0.2s ease-in-out",
+    cursor: "pointer",
   },
   description: {
     color: "#f4f4f4",
@@ -196,17 +232,22 @@ export const PStyles = makeStyles((theme) => ({
 function Project({ project }) {
   const classes = PStyles();
 
-  return (
-    <Grid item xs={12} sm={6} className={classes.project}>
-      {/* <div className={classes.project}></div> */}
-      <img src={project.image} alt={project.title} className={classes.img} />
-      <div className={classes.blur}>
-        <div className={classes.title}>
-          {project.title}
-          <div className={classes.bar}></div>
-        </div>
+  function open () {
+    window.open(project.link)
+  }
 
-        <div className={classes.description}>{project.description}</div>
+  return (
+    <Grid item xs={12} sm={6}>
+      <div className={classes.project} onClick={open}>
+        <img src={project.image} alt={project.title} className={classes.img} />
+        <div className={classes.blur}>
+          <div className={classes.title}>
+            {project.title}
+            <div className={classes.bar}></div>
+          </div>
+
+          <div className={classes.description}>{project.description}</div>
+        </div>
       </div>
     </Grid>
   );
