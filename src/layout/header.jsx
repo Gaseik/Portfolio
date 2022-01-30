@@ -272,7 +272,7 @@ export const useStyles = makeStyles({
   },
 });
 
-function Header({ history, scrollToTop, aboutRef ,projectsRef,contactRef }) {
+function Header({ history, scroll,setScroll,scrollToTop, aboutRef ,projectsRef,contactRef }) {
   const [sele, setSele] = useState("");
   const [sticky, setSticky] = useState(true);
   const [navbar, setNavbar] = useState(false);
@@ -324,8 +324,10 @@ function Header({ history, scrollToTop, aboutRef ,projectsRef,contactRef }) {
   }, []);
 
   useEffect(() => {
-    console.log()
-  }, []);
+    setSele(scroll)
+    console.log(scroll)
+   
+  }, [scroll]);
 
 
 
@@ -365,6 +367,7 @@ function Header({ history, scrollToTop, aboutRef ,projectsRef,contactRef }) {
           onClick={() => {
             history.push("/contact");
             setSele("contact");
+            setScroll('contact')
             contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
             setColor(false);
           }}

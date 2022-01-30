@@ -7,7 +7,7 @@ import LandingPage from "./pages/LandingPage";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import Footer from "./layout/footer"
 import ScrollToTop from "./Component/ScrollToTop";
-import { useRef } from "react";
+import { useRef,useState } from "react";
 
 const theme = createTheme({});
 
@@ -18,6 +18,7 @@ function App() {
   const scrollToTop = (a) => {
     document.getElementById(a).scroll(0,0)
   }
+  const [scroll,setScroll] = useState()
 
   return (
     <ThemeProvider theme={theme}>
@@ -25,10 +26,10 @@ function App() {
      
         <Router>
 
-          <Header scrollToTop={scrollToTop} aboutRef={About} projectsRef={Projects} contactRef={Contact}/>
-          <LandingPage aboutRef={About} projectsRef={Projects} contactRef={Contact}/>
-          <Footer/>
-          <ScrollToTop/>
+          <Header scroll={scroll} scrollToTop={scrollToTop} aboutRef={About} projectsRef={Projects} contactRef={Contact}/>
+          <LandingPage scroll={scroll} setScroll={setScroll} aboutRef={About} projectsRef={Projects} contactRef={Contact}/>
+          <Footer />
+          <ScrollToTop />
         </Router>
       </div>
     </ThemeProvider>

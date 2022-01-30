@@ -120,7 +120,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Contact({ contactRef }) {
+function Contact({ contactRef , setScroll }) {
   const [data, set] = React.useState({
     name: "",
     email: "",
@@ -131,7 +131,7 @@ function Contact({ contactRef }) {
   const classes = useStyles();
 
   return (
-    <div className={classes.container} ref={contactRef}>
+    <div className={classes.container} onMouseEnter={()=>setScroll('contact')} ref={contactRef}>
       <div className={classes.title}>
         <div className={classes.titleName} id={"about"}>
           Contact

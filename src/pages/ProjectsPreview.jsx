@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme) => ({
     height: "100%",
     // display: "flex",
     position: "relative",
-    margin: "4rem 0",
+    padding: "4rem 0",
   },
   title: {
     margin: "2rem 0",
@@ -118,7 +118,7 @@ const PPs = [
   },
 ];
 
-function Projects({ history, setIsloading, projectsRef }) {
+function Projects({ history,setScroll, setIsloading, projectsRef }) {
   const classes = useStyles();
 
   React.useEffect(() => {
@@ -136,7 +136,7 @@ function Projects({ history, setIsloading, projectsRef }) {
   });
 
   return (
-    <div className={classes.container} ref={projectsRef}>
+    <div className={classes.container} onWheel={()=>setScroll('projects')} ref={projectsRef}>
       <Grid container>
         <Grid item xs={12}>
           <Grid container>

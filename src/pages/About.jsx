@@ -11,9 +11,9 @@ export const useStyles = makeStyles((theme) => ({
     height: "100%",
     // display: "flex",
     position: "relative",
-    marginTop: "50px",
+    // marginTop: "50px",
     // margin: " 0",
-    padding: "5% 5%",
+    padding: "10vw 5%",
   },
   title: {
     margin: "0 0 7%",
@@ -84,13 +84,13 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function About({ aboutRef }) {
+function About({ aboutRef,setScroll }) {
   const classes = useStyles();
 
   
 
   return (
-    <div className={classes.container} onScroll={()=>{console.log('about')}} ref={aboutRef}>
+    <div className={classes.container} onWheel={()=>{setScroll('about')}} ref={aboutRef}>
       <div className={classes.title}>
         <div className={classes.titleName} id={"about"}>
           About

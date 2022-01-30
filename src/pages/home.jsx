@@ -21,7 +21,7 @@ export const useStyles = makeStyles((theme) => ({
   left: {},
   right: {
     height: "100%",
-    width: "30%",
+    width: props=>props.scroll==="contact"?"0":"30%",
     backgroundColor: color.primary,
     position: "absolute",
     right: 0,
@@ -115,8 +115,8 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home({ history , setIsloading }) {
-  const classes = useStyles();
+function Home({ history ,scroll, setIsloading ,setScroll}) {
+  const classes = useStyles({scroll: scroll});
 
 
   React.useEffect(() => {
@@ -134,7 +134,7 @@ function Home({ history , setIsloading }) {
   })
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} onMouseEnter={()=>setScroll('home')}>
       <div className={classes.left}></div>
       <div className={classes.icons}>
         <div

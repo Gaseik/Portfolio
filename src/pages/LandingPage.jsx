@@ -35,20 +35,20 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LandingPage({ history , aboutRef,projectsRef,contactRef }) {
+function LandingPage({ history ,scroll ,setScroll,aboutRef,projectsRef,contactRef }) {
   const [isloading,setIsloading] = useState(true)
   const classes = useStyles();
 
 
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} >
         <div className={classes.right}></div>
-      <Loading isloading={isloading}/>
-      <Home setIsloading={setIsloading}/>
-      <Projects setIsloading={setIsloading} projectsRef={projectsRef} />
-      <About setIsloading={setIsloading} aboutRef={aboutRef} />
-      <Contact setIsloading={setIsloading} contactRef={contactRef}/>
+      <Loading isloading={isloading} />
+      <Home setIsloading={setIsloading} scroll={scroll} setScroll={setScroll}/>
+      <Projects setIsloading={setIsloading} setScroll={setScroll} projectsRef={projectsRef} />
+      <About setIsloading={setIsloading} setScroll={setScroll} aboutRef={aboutRef} />
+      <Contact setIsloading={setIsloading} setScroll={setScroll} contactRef={contactRef}/>
     </div>  
   );
 }
