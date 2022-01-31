@@ -117,7 +117,7 @@ export const useStyles = makeStyles((theme) => ({
 
 function Home({ history ,scroll, setIsloading ,setScroll}) {
   const classes = useStyles({scroll: scroll});
-
+  
 
   React.useEffect(() => {
     fetch(Image1)
@@ -162,7 +162,7 @@ function Home({ history ,scroll, setIsloading ,setScroll}) {
           <SiC fontSize={16} />
         </div>
       </div>
-      <div className={classes.right}></div>
+   
       <img src={Image1} alt="" className={classes.image} />
     </div>
   );

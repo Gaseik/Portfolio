@@ -26,7 +26,7 @@ function App() {
      
         <Router>
 
-          <Header scroll={scroll} scrollToTop={scrollToTop} aboutRef={About} projectsRef={Projects} contactRef={Contact}/>
+          <Header scroll={scroll} setScroll={setScroll} scrollToTop={scrollToTop} aboutRef={About} projectsRef={Projects} contactRef={Contact}/>
           <LandingPage scroll={scroll} setScroll={setScroll} aboutRef={About} projectsRef={Projects} contactRef={Contact}/>
           <Footer />
           <ScrollToTop />

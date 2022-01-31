@@ -18,7 +18,8 @@ export const useStyles = makeStyles((theme) => ({
   },
   right: {
     height: "100%",
-    width: "30%",
+    transition: "all .5s ease-in-out",
+    width: props=>props.scroll==="contact"?"0":"30%",
     backgroundColor: color.primary,
     position: "absolute",
     right: 0,
@@ -37,7 +38,7 @@ export const useStyles = makeStyles((theme) => ({
 
 function LandingPage({ history ,scroll ,setScroll,aboutRef,projectsRef,contactRef }) {
   const [isloading,setIsloading] = useState(true)
-  const classes = useStyles();
+  const classes = useStyles({scroll: scroll});
 
 
 

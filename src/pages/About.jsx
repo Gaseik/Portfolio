@@ -90,7 +90,7 @@ function About({ aboutRef,setScroll }) {
   
 
   return (
-    <div className={classes.container} onWheel={()=>{setScroll('about')}} ref={aboutRef}>
+    <div className={classes.container} onMouseEnter={()=>{setScroll('about')}} ref={aboutRef}>
       <div className={classes.title}>
         <div className={classes.titleName} id={"about"}>
           About

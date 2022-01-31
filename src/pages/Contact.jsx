@@ -13,7 +13,7 @@ const inputStyle = {
   outline: "none",
   width: "100%",
   color: "#000",
-  border: "1px solid " + color.primary,
+  border: "2px solid " + color.primary,
   background: "transparent",
   "& input:focus-visible": {
     outline: "none",
@@ -78,7 +78,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   MutiStyle: {
     padding: "1.5rem 2rem",
-    border: "1px solid " + color.primary,
+    border: "2px solid " + color.primary,
     background: "transparent",
     fontSize: 16,
     outline: "none",
@@ -110,37 +110,97 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "36px",
     cursor: "pointer",
     borderRadius: "20px",
-    border:'none',
+    border: 'none',
     "&:hover": {
-      color:color.primary,
+      color: color.primary,
       // opacity:.7,
-      transition:'all .3s ease-in-out'
+      transition: 'all .3s ease-in-out'
     }
     // border: "10px solid "
   },
+  send: {
+    ...style.btn,
+    width: "25%",
+    borderRadius: "30px",
+    justifySelf: "inherit",
+    margin: "2rem auto",
+    alignItems: "center",
+    justifyContent: "center",
+    background: 'transparent',
+    fontFamily: 'Playfair Display',
+    fontSize: '1.25rem',
+
+  },
+  success: {
+    background: color.primaryDark,
+    width: "80%",
+    borderRadius: "30px",
+    border: "3px solid " + color.primaryDark,
+    height: "20px",
+    maxWidth: "200px",
+    position: "fixed",
+    // top: props=>props.open?'100px':'-100px',
+    top:-100,
+    transition:'all .5s ease-in-out',
+    color:'#fff',
+    padding:'1rem 20px',
+    // margin: '0 auto',
+    right: 'calc(50% - 120px)',
+  
+  },
+  ani:{
+    animationName:"$suc1",
+    animationDuration: "5s",
+  },
+  "@keyframes suc1": {
+    "0%": {
+      top: "-100px",
+    },
+    "20%": {
+      top: "100px",
+    },
+    "80%":{
+      top: "100px",
+    },
+    "100%":{
+      top: "-100px",
+    }
+  },
 }));
 
-function Contact({ contactRef , setScroll }) {
+function Contact({ contactRef, setScroll }) {
   const [data, set] = React.useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
+  const [open,setOpen]= React.useState(false)
   const [state, handleSubmit] = useForm("xvolgnbp");
   const classes = useStyles();
 
+  React.useEffect(()=>{
+    if(state.succeeded){
+      setOpen(true)
+   
+    
+    }
+  },[state])
+
+
+
   return (
-    <div className={classes.container} onMouseEnter={()=>setScroll('contact')} ref={contactRef}>
+    <div className={classes.container} onMouseEnter={() => setScroll('contact')} ref={contactRef}>
       <div className={classes.title}>
         <div className={classes.titleName} id={"about"}>
           Contact
         </div>
         <div className={classes.bar}></div>
       </div>
-      <form  onSubmit={handleSubmit}>
-        <Grid container justifyContent="space-between">
-          <Grid item xs={10} md={8}>
+      <Success open={open} setOpen={setOpen}/>
+      <form onSubmit={handleSubmit}>
+        <Grid container justifyContent="center">
+          <Grid item xs={10} md={6}>
             <div className={classes.form}>
               <input
                 type="text"
@@ -154,7 +214,7 @@ function Contact({ contactRef , setScroll }) {
                 className={classes.input}
                 placeholder="Email"
                 name="email"
-                type="email" 
+                type="email"
                 key="email"
               />
               <input
@@ -176,10 +236,11 @@ function Contact({ contactRef , setScroll }) {
                 placeholder="Leave your message here...."
               />
             </div>
+            <button type="submit"   disabled={state.submitting} className={classes.send}>Submit</button>
           </Grid>
-          <Grid item xs={2} md={3}>
+          {/* <Grid item xs={2} md={3}>
             <button type="submit" disabled={state.submitting} className={classes.submit}>SEND</button>
-          </Grid>
+          </Grid> */}
         </Grid>
       </form>
     </div>
@@ -187,3 +248,21 @@ function Contact({ contactRef , setScroll }) {
 }
 
 export default withRouter(Contact);
+
+function Success({open,setOpen}) {
+  const classes = useStyles({open:open})
+
+  // React.useEffect(()=>{
+  //   if(open){
+    
+  //   }
+    
+  // },[open])
+
+
+  return ( 
+    <div className={`${classes.success} ${open?classes.ani:''}`}>
+      Thank you for contacting !
+    </div>
+  )
+}
