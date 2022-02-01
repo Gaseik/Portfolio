@@ -92,7 +92,7 @@ const PPs = [
     title: "Mercury",
     id: "a1",
     image: Image1,
-    link:'https://baozhen.hannlync.com/',
+    link:'https://www.baozhen.hannlync.com/',
     description: "Anti-counterfeiting System",
   },
   {
@@ -105,7 +105,7 @@ const PPs = [
   {
     id: "a3",
     title: "Janitor (Mobile)",
-    link:'https://janitorapp.hannlync.com/login',
+    link:'https://www.janitorapp.hannlync.com/login',
     image: JanitorImage,
     description: "Assistant application",
   },
@@ -113,7 +113,7 @@ const PPs = [
     id: "a4",
     title: "CitizenApp (Mobile)",
     image: CititzenImage,
-    link:"https://citizenapp.hannlync.com/login",
+    link:"https://www.citizenapp.hannlync.com/login",
     description: "Assistant application",
   },
 ];
