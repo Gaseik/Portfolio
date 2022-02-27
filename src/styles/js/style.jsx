@@ -37,8 +37,9 @@ const  btn = {
 
   "&:hover":{
     opacity:.8,
-    color:color.primary,
-    border: '3px solid '+color.primary,
+    color:"#fff",
+    border: '3px solid '+color.primaryDark,
+    background:color.primaryDark,
     transition:'all .2s ease-in-out',
 }
 }

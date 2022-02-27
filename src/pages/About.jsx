@@ -42,7 +42,7 @@ export const useStyles = makeStyles((theme) => ({
   content: {
     textAlign: "initial",
     fontSize: "16px",
-    marginBottom:'5rem'
+    marginBottom: "5rem",
   },
   download: {
     ...style.btn,
@@ -80,17 +80,20 @@ export const useStyles = makeStyles((theme) => ({
     left: "10%",
     top: "10%",
     zIndex: 1,
-   
   },
 }));
 
-function About({ aboutRef,setScroll }) {
+function About({ aboutRef, setScroll }) {
   const classes = useStyles();
 
-  
-
   return (
-    <div className={classes.container} onMouseEnter={()=>{setScroll('about')}} ref={aboutRef}>
+    <div
+      className={classes.container}
+      onMouseEnter={() => {
+        setScroll("about");
+      }}
+      ref={aboutRef}
+    >
       <div className={classes.title}>
         <div className={classes.titleName} id={"about"}>
           About
@@ -105,14 +108,35 @@ function About({ aboutRef,setScroll }) {
               who is performing at the junction of design and crafting
               meaningful ideas.
             </div>
-            <div className={classes.content}>
+            {/* <div className={classes.content}>
               With a psychology background, I understand how to put the
               user at the center of design. I do this by empathizing with the
-              users and discovering their motivations, needs, and pain points. I
-              possess two years of experience in a tech company, where I am
-              working part-time as a web developer.
+              users and discovering their motivations, needs, and pain points. 
+            </div> */}
+            <div className={classes.content}>
+              <p>
+                {" "}
+                As a front-end developer, we always deal with those look like
+                conflict ideas like logical processes and aesthetics.
+              </p>
+              <p>
+                {" "}
+                In my personality, which is also kind of that way, enjoying to
+                balance those things in the right way to create a product the
+                user need or we think they need.
+              </p>
+              <p>
+                My psychology background also improves those key points and help
+                my communication skill and UX design which also I have a serious
+                passion for. 
+              </p>
+              <p>
+              Interested in working on ambitious projects with
+                positive people. 
+              </p>
+              <p>Let’s make something special!</p>
             </div>
-           
+
             <div className={classes.download}>
               My Resume
               <HiDownload fontSize={16} style={{ marginLeft: ".5rem" }} />
