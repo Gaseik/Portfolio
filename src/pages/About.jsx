@@ -137,7 +137,7 @@ function About({ aboutRef, setScroll }) {
               <p>Let’s make something special!</p>
             </div>
 
-            <div className={classes.download}>
+            <div className={classes.download} onClick={()=>{window.open('https://www.cakeresume.com/james-cheng-gaseik')}}>
               My Resume
               <HiDownload fontSize={16} style={{ marginLeft: ".5rem" }} />
             </div>
