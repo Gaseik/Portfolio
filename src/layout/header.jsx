@@ -4,8 +4,8 @@ import { makeStyles } from "@mui/styles";
 import { withRouter } from "react-router";
 import { RiSearch2Line } from "react-icons/ri";
 import Color from "../styles/js/style";
-import { NavLink } from "react-router-dom";
-import Image2 from "../img/homepage.png";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Mobile from './mobileHeader'
 import { useScrollPosition } from "./useScrollPosition";
 let height = "100px";
 let login = {
@@ -277,7 +277,7 @@ function Header({ history, scroll,setScroll,scrollToTop, aboutRef ,projectsRef,c
   const [sticky, setSticky] = useState(true);
   const [navbar, setNavbar] = useState(false);
   const [color, setColor] = useState(false);
-
+  const matches = useMediaQuery('(max-width:600px)');
   const classes = useStyles({
     sticky: sticky,
     navbar: navbar,
@@ -331,7 +331,12 @@ function Header({ history, scroll,setScroll,scrollToTop, aboutRef ,projectsRef,c
 
 
 
+ if(matches){
+  return (
+    <Mobile/>
+  )
 
+ }
   return (
     <div className={classes.container}>
       <div className={classes.Logo} onClick={()=>{ window.scrollTo({ top: 0, behavior: "smooth" });}}>Gaseik.</div>
