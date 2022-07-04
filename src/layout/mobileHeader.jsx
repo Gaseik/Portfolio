@@ -31,9 +31,8 @@ let login = {
   },
 };
 export const useStyles = makeStyles({
-  header: {},
 
-  container: {
+  Mcontainer: {
     top: 0,
     left: 0,
   
@@ -44,30 +43,51 @@ export const useStyles = makeStyles({
     zIndex: "10",
     flexWrap: "wrap",
     display: "flex",
+    transitionDelay: '0.2s',
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems:  "center",
     background: (props) => (!props.navbar ? "" : Color.primaryDark),
   },
-
-  Logo: {
+  panel: {
+    // padding:'4rem 0',
+    zIndex:20,
+    opacity: props=>props.open?1:0,
+    display: "flex",
+    flexDirection: "column",
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
+    top:0,
+    width: "100%",
+    transitionDelay: '0.4s',
+    transition: 'all 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99) ',
+    height: props=>!props.open?"0":"100vh",
+    background: (props) => props.open?Color.primaryDark:'transparent'
+  },
+  LogoM: {
     cursor: "pointer",
-    padding: "0 0 0 0rem",
+    // padding: "0 0 0 0rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     height: 24,
-    fontSize: 48,
+    fontSize: 36,
     width: 180,
-    color: (props) => (props.navbar ? Color.primary : Color.primaryDark),
+    zIndex:21,
+    position: "relative",
+    transitionDelay: '0.2s',
+    transition: 'all 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99)',
+    color: (props) => (props.navbar || props.open ? Color.primary : Color.primaryDark),
     // fontWeight: "bold",
-    margin: "0 2% 0 5%",
-    transition: 'all 0.2s ease-in-out',
+    // margin: "0 2% 0 5%",
   },
   block:{
     display: "block",
-    width:'50px'
+    width:'50px',
+    height:'2px'
   },
   menu:{
+    zIndex:21,
     position: 'relative',
     display: 'inline - block',
     height: '50px',
@@ -79,7 +99,7 @@ export const useStyles = makeStyles({
     '- webkit - tap - highlight - color': 'transparent'
   },
   burger:{
-    width:'100%',
+    width:'20px',
     height:'100%',
     display: "block",
     position: "relative",
@@ -93,7 +113,7 @@ export const useStyles = makeStyles({
     height: '2px',
     display: "block",
     position: "relative",
-    background: Color.primary,
+    background: props => props.open || props.navbar ?Color.primary: Color.primaryDark,
     transitionDelay:'0.2s',
     transition: 'all 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99)',
     transform:props=>props.open?'rotate(90deg)':''
@@ -103,7 +123,74 @@ export const useStyles = makeStyles({
   },
   bottombar: {
     transform: props => props.open ?"translateY(3px) rotate(-45deg)": "translateY(12px) rotate(0deg)"
-  } 
+  } ,
+  midbar: {
+    opacity:props=>props.open?0:1,
+  transform: "translateY(3px) rotate(0deg)"
+  },
+  btns: {
+    margin: " 4rem 0",
+    cursor: "pointer",
+    fontSize: "24px",
+    height: "25px",
+    display: "flex",
+    color: "#fff",
+    flexDirection: "column",
+    justifyContent: "center",
+    textAlign: "center",
+    verticalAlign: "bottom",
+    paddingTop: "2px",
+    position: "relative",
+    transition: "all .2s ease-out",
+    width: "20%",
+    minWidth: "100px",
+    "&:hover": {
+      color: Color.primary,
+      transition: "all .2s ease-out",
+      "&::after": {
+        content: '""',
+        // width: "100px",
+        height: "2px",
+        display: "block",
+        width: "100%",
+        background: Color.primary,
+        position: "absolute",
+        bottom: "-5px",
+        // bottom: "-3px",
+        animationName: "$lolo",
+        animationDuration: ".5s",
+      },
+    },
+  },
+  SeleBtns: {
+    // background:'green',
+    // width:190,
+    color: Color.primary,
+    paddingTop: "5px",
+    userSelect: "none",
+    "&::after": {
+      content: '""',
+      width: "100%",
+      //  width: 100px,
+      height: "2px",
+      display: "block",
+      background: Color.primary,
+      position: "absolute",
+      bottom: "-4px",
+    }
+  },
+  "@keyframes lolo": {
+    "0%": {
+      opacity: 0,
+      width: "0%",
+      bottom: "-10px",
+    },
+    "100%": {
+      opacity: 1,
+      width: "100%",
+      bottom: "-5px",
+    },
+  },
 
 });
 
@@ -132,7 +219,7 @@ function MobileHeader({ history, scroll,setScroll,scrollToTop, aboutRef ,project
   useEffect(() => {
     changeBackground();
     // adding the event when scroll change background
-    // wi。ndow.addEventListener("scroll", changeBackground);
+    window.addEventListener("scroll", changeBackground);
   });
 
   useEffect(() => {
@@ -153,19 +240,45 @@ function MobileHeader({ history, scroll,setScroll,scrollToTop, aboutRef ,project
   useEffect(() => {
     setSele(scroll)
   }, [scroll]);
+  
+  const navList = [
+    {name:'Projects',
+  ref:projectsRef},{name:'About',ref:aboutRef},{name:'Contact',ref:contactRef}
+  ]
 
 
 
   return (
-    <div className={classes.container}>
-      <div className={classes.menu}>
-        <div className={classes.burger} onClick={()=>{setOpen(!open)}}>
-          <div className={`${classes.bar} ${classes.topbar}`}></div>
-          <div className={`${classes.bottombar} ${classes.bar}`}></div>
+    
+    <div className={classes.Mcontainer}>
+     
+        <div className={classes.menu}>
+          <div className={classes.burger} onClick={() => { setOpen(!open) }}>
+            <div className={`${classes.bar} ${classes.topbar}`}></div>
+            <div className={`${classes.bottombar} ${classes.bar}`}></div>
+          <div className={`${classes.midbar} ${classes.bar}`}></div>
+          </div>
         </div>
-      </div>
-      <div className={classes.Logo} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }}>Gaseik.</div>
-      <div className={classes.block}></div>
+        <div className={classes.LogoM} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }}>Gaseik.</div>
+        <div className={classes.block}></div>
+        <div className={classes.panel}>
+          {navList.map((n)=>(
+            <div
+              className={sele === n.name.toLowerCase() ? `${classes.SeleBtns} ${classes.btns}` : classes.btns}
+              onClick={() => {
+                history.push(`/${n.name.toLowerCase()}`);
+                setSele(n.name.toLowerCase());
+                setScroll(n.name.toLowerCase())
+                n.ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setColor(false);
+                setOpen(false)
+              }}
+            >
+             {n.name}
+            </div>
+          ))}
+        </div>
+     
     </div>
   )
 

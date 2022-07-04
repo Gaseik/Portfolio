@@ -247,8 +247,6 @@ export const useStyles = makeStyles({
   },
   contactUs: {
     cursor: "pointer",
-    // border: "2px solid #0090FD",
-    // borderRadius: "8px",
     color: (props) => (props.sele === "contact" ? "#fff" : Color.primary),
     margin: "0 100px 0 30px",
     fontSize: "16px",
@@ -325,18 +323,13 @@ function Header({ history, scroll,setScroll,scrollToTop, aboutRef ,projectsRef,c
 
   useEffect(() => {
     setSele(scroll)
-    console.log(scroll)
    
   }, [scroll]);
 
 
 
- if(matches){
-  return (
-    <Mobile/>
-  )
 
- }
+ 
   return (
     <div className={classes.container}>
       <div className={classes.Logo} onClick={()=>{ window.scrollTo({ top: 0, behavior: "smooth" });}}>Gaseik.</div>
