@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import color, { style } from "../styles/js/style";
 import { withRouter } from "react-router";
-import Image2 from "../img/6dc7cbdfeb72054c317824f67ca6368a.jpeg";
+import Image2 from "../img/AboutImg.jpg";
 import { HiDownload } from "react-icons/hi";
 export const useStyles = makeStyles((theme) => ({
   container: {
@@ -143,7 +143,8 @@ function About({ aboutRef, setScroll }) {
             </div>
           </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} data-aos="zoom-in-left" 
+      data-aos-duration="1000">
           <Grid
             container
             // direction={"row-reverse"}

@@ -7,10 +7,7 @@ import Image1 from "../img/JanitorMockup.png";
 import HannlyncImage from "../img/HanMockup.png";
 import JanitorImage from "../img/JanitorNNMockup.png";
 import CititzenImage from "../img/CitizenMockup.png";
-import { SiC } from "react-icons/si";
-import Loading from "../Component/loading";
 import Grid from "@mui/material/Grid";
-import { IoIosArrowDown } from "react-icons/io";
 
 export const useStyles = makeStyles((theme) => ({
   container: {
@@ -92,20 +89,20 @@ const PPs = [
     title: "Mercury",
     id: "a1",
     image: Image1,
-    link:'https://www.baozhen.hannlync.com/',
+    link: 'https://www.baozhen.hannlync.com/',
     description: "Anti-counterfeiting System",
   },
   {
     id: "a2",
     title: "Hannlync",
     image: HannlyncImage,
-    link:"https://www.hannlync.com/",
+    link: "https://www.hannlync.com/",
     description: "Offical website(RWD)",
   },
   {
     id: "a3",
     title: "Janitor (Mobile)",
-    link:'https://www.janitorapp.hannlync.com/login',
+    link: 'https://www.janitorapp.hannlync.com/login',
     image: JanitorImage,
     description: "Assistant application",
   },
@@ -113,12 +110,12 @@ const PPs = [
     id: "a4",
     title: "CitizenApp (Mobile)",
     image: CititzenImage,
-    link:"https://www.citizenapp.hannlync.com/login",
+    link: "https://www.citizenapp.hannlync.com/login",
     description: "Assistant application",
   },
 ];
 
-function Projects({ history,setScroll, setIsloading, projectsRef }) {
+function Projects({ history, setScroll, setIsloading, projectsRef }) {
   const classes = useStyles();
 
   React.useEffect(() => {
@@ -136,7 +133,7 @@ function Projects({ history,setScroll, setIsloading, projectsRef }) {
   });
 
   return (
-    <div className={classes.container} onWheel={()=>setScroll('projects')} ref={projectsRef}>
+    <div className={classes.container} onWheel={() => setScroll('projects')} ref={projectsRef}>
       <Grid container>
         <Grid item xs={12}>
           <Grid container>
@@ -147,7 +144,7 @@ function Projects({ history,setScroll, setIsloading, projectsRef }) {
             <Grid item xs={12}>
               <Grid container spacing={0}>
                 {PPs.map((P) => (
-                  <Project project={P} key={P.id} />
+                  <Project project={P} key={P.id} data-aos="flip-up" />
                 ))}
               </Grid>
             </Grid>
@@ -232,12 +229,13 @@ export const PStyles = makeStyles((theme) => ({
 function Project({ project }) {
   const classes = PStyles();
 
-  function open () {
+  function open() {
     window.open(project.link)
   }
 
   return (
-    <Grid item xs={12} sm={6}>
+    <Grid item xs={12} sm={6} data-aos="flip-up" data-aos-easing="linear"
+      data-aos-duration="400">
       <div className={classes.project} onClick={open}>
         <img src={project.image} alt={project.title} className={classes.img} />
         <div className={classes.blur}>
